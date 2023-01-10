@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'signet-out',  to: 'signouts#index'
+  devise_for :users, except: :create, path: '', path_names: { sign_in: 'login', sign_out: 'signed-out' }
+  resources :volunteer_help_requests
+  root to: 'volunteer_help_requests#index'
 end

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @volunteer_help_request.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @volunteer_help_request.description %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @volunteer_help_request.deadline %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @volunteer_help_request.city %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @volunteer_help_request.status %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @volunteer_help_request.image %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @volunteer_help_request.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_volunteer_help_request_path(@volunteer_help_request) %> |
+<%= link_to 'Back', volunteer_help_requests_path %>

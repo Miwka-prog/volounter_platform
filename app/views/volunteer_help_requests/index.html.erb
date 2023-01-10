@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Volunteer Help Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Deadline</th>
+      <th>City</th>
+      <th>Status</th>
+      <th>Image</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @volunteer_help_requests.each do |volunteer_help_request| %>
+      <tr>
+        <td><%= volunteer_help_request.title %></td>
+        <td><%= volunteer_help_request.description %></td>
+        <td><%= volunteer_help_request.deadline %></td>
+        <td><%= volunteer_help_request.city %></td>
+        <td><%= volunteer_help_request.status %></td>
+        <td><%= volunteer_help_request.image %></td>
+        <td><%= volunteer_help_request.user_id %></td>
+        <td><%= link_to 'Show', volunteer_help_request %></td>
+        <td><%= link_to 'Edit', edit_volunteer_help_request_path(volunteer_help_request) %></td>
+        <td><%= link_to 'Destroy', volunteer_help_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Volunteer Help Request', new_volunteer_help_request_path %>
