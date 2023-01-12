@@ -7,6 +7,7 @@ ruby '2.7.7'
 gem 'rails', '~> 6.0.0'
 gem 'devise'
 gem 'ransack'
+gem 'pundit'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

@@ -32,5 +32,13 @@
   <% end %>
 </p>
 
-<%= link_to 'Edit', edit_volunteer_help_request_path(@volunteer_help_request) %> |
+<% if VolounteerHelpRequestsPolicy.new(current_user, @volunteer_help_request).update? %>
+  <%= link_to 'Edit', edit_volunteer_help_request_path(@volunteer_help_request) %>
+<% end %>
+<% if VolounteerHelpRequestsPolicy.new(current_user, @volunteer_help_request).take_in_progress? %>
+  <%= link_to 'Take in progress', volunteer_help_request_take_path(volunteer_help_request_id: @volunteer_help_request.id), method: :post %>
+<% end %>
+<% if VolounteerHelpRequestsPolicy.new(current_user, @volunteer_help_request).finish? %>
+  <%= link_to 'Finish', volunteer_help_request_finish_path(volunteer_help_request_id: @volunteer_help_request.id), method: :post %> |
+<% end %>
 <%= link_to 'Back', volunteer_help_requests_path %>

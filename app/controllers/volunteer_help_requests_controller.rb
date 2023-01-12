@@ -4,8 +4,12 @@ class VolunteerHelpRequestsController < ApplicationController
 
   # GET /volunteer_help_requests or /volunteer_help_requests.json
   def index
-    @q = VolunteerHelpRequest.ransack(params[:q])
+    @q = VolunteerHelpRequest.where.not(status: 'finished').ransack(params[:q])
     @volunteer_help_requests = @q.result(distict: true)
+  end
+
+  def in_progress
+    @volunteer_help_requests = VolunteerHelpRequest.where(volounteer_id: current_user.id)
   end
 
   # GET /volunteer_help_requests/1 or /volunteer_help_requests/1.json
@@ -45,6 +49,28 @@ class VolunteerHelpRequestsController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @volunteer_help_request.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def take_in_progress
+    @volunteer_help_request = VolunteerHelpRequest.find(params[:volunteer_help_request_id])
+    respond_to do |format|
+      if  @volunteer_help_request.update(volounteer_id: current_user.id, status: 'in_progress')
+        format.html { redirect_to volunteer_help_request_url(@volunteer_help_request), notice: "Volunteer help request was successfully took in progress" }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def finish
+    @volunteer_help_request = VolunteerHelpRequest.find(params[:volunteer_help_request_id])
+    respond_to do |format|
+      if  @volunteer_help_request.update(status: 'finished')
+        format.html { redirect_to volunteer_help_request_url(@volunteer_help_request), notice: "Volunteer help request was successfully done" }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
