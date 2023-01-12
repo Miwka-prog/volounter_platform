@@ -26,13 +26,10 @@
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @volunteer_help_request.image %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @volunteer_help_request.user_id %>
+  <strong>Images:</strong>
+  <% @volunteer_help_request.photos.each do |photo| %>
+    <%= image_tag url_for(photo), style: 'width: 300px' %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_volunteer_help_request_path(@volunteer_help_request) %> |

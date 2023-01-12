@@ -37,13 +37,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.label 'Photos' %>
+    <%= form.file_field :photos, multiple: true %>
   </div>
 
   <div class="actions">

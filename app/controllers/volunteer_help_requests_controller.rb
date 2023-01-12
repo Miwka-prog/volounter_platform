@@ -4,7 +4,8 @@ class VolunteerHelpRequestsController < ApplicationController
 
   # GET /volunteer_help_requests or /volunteer_help_requests.json
   def index
-    @volunteer_help_requests = VolunteerHelpRequest.all
+    @q = VolunteerHelpRequest.ransack(params[:q])
+    @volunteer_help_requests = @q.result(distict: true)
   end
 
   # GET /volunteer_help_requests/1 or /volunteer_help_requests/1.json
@@ -66,6 +67,6 @@ class VolunteerHelpRequestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def volunteer_help_request_params
-      params.require(:volunteer_help_request).permit(:title, :description, :deadline, :city, :status, :image, :user_id)
+      params.require(:volunteer_help_request).permit(:title, :description, :deadline, :city, :status, photos: [])
     end
 end
